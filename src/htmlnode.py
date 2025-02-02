@@ -10,8 +10,9 @@ class HTMLNode():
     
     def props_to_html(self):
         final_string = ""
-        for key in self.props:
-            final_string += " " + key + '="' + self.props[key] + '"'
+        if self.props is not None:
+            for key in self.props:
+                final_string += " " + key + '="' + self.props[key] + '"'
         return final_string
     
     ###eq method not really needed for unittests, if we want to test props_to_html methods - Python knows how to compare strings
