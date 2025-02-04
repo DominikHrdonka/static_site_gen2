@@ -37,5 +37,20 @@ class LeafNode(HTMLNode):
         
         else:
             return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props=None):
+        if not tag:
+            raise ValueError("Tag is required.")
+        elif not isinstance(children, list):
+            raise ValueError("Children must be a list.")
+        elif len(children)==0:
+            raise ValueError("Children cannot be empty.")
+        
+        for child in children:
+            if not isinstance(child, HTMLNode):
+                raise ValueError("Children must be an HTMLNode descendant")
+        
+        super().__init__(tag, children=children, props=props)
         
         
