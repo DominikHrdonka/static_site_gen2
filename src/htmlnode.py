@@ -52,5 +52,10 @@ class ParentNode(HTMLNode):
                 raise ValueError("Children must be an HTMLNode descendant")
         
         super().__init__(tag, children=children, props=props)
-        
+
+    def to_html(self):
+        children_string = ""
+        for child in self.children:
+            children_string += child.to_html()
+        return f"<{self.tag}>{children_string}</{self.tag}>"
         
