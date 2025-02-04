@@ -42,6 +42,8 @@ class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):
         if not tag:
             raise ValueError("Tag is required.")
+        elif children is None:
+            raise ValueError("Children are required.")
         elif not isinstance(children, list):
             raise ValueError("Children must be a list.")
         elif len(children)==0:
@@ -49,7 +51,7 @@ class ParentNode(HTMLNode):
         
         for child in children:
             if not isinstance(child, HTMLNode):
-                raise ValueError("Children must be an HTMLNode descendant")
+                raise ValueError("Children must be an HTMLNode descendant.")
         
         super().__init__(tag, children=children, props=props)
 
